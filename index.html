@@ -1,486 +1,204 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DeathVisuals — премиум визуалы для Minecraft</title>
-<style>
-  :root {
-    --bg: #07070c;
-    --card: #11111a;
-    --card-2: #171724;
-    --accent: #ff2e4d;
-    --accent-2: #8b5cf6;
-    --text: #f2f2f7;
-    --muted: #8a8aa0;
-    --border: rgba(255,255,255,0.08);
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Segoe UI', Inter, system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    overflow-x: hidden;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Бесплатные сайты и хостинги</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  /* Фон с свечением */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(circle at 15% 20%, rgba(255,46,77,0.18), transparent 35%),
-      radial-gradient(circle at 85% 60%, rgba(139,92,246,0.18), transparent 35%);
-    pointer-events: none;
-    z-index: -1;
-  }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #0d1117;
+      color: #e6edf3;
+      line-height: 1.6;
+      padding: 24px;
+    }
 
-  a { color: inherit; text-decoration: none; }
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
 
-  /* Навигация */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 18px 8%;
-    backdrop-filter: blur(12px);
-    background: rgba(7,7,12,0.7);
-    border-bottom: 1px solid var(--border);
-    z-index: 100;
-  }
-  .logo { font-weight: 800; font-size: 1.3rem; letter-spacing: 1px; }
-  .logo span { color: var(--accent); }
-  nav ul { display: flex; gap: 28px; list-style: none; }
-  nav ul a { color: var(--muted); transition: color .2s; }
-  nav ul a:hover { color: var(--text); }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #30363d;
+      margin-bottom: 28px;
+    }
 
-  /* Кнопки */
-  .btn {
-    display: inline-block;
-    padding: 14px 28px;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 1rem;
-    color: #fff;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    box-shadow: 0 10px 30px rgba(255,46,77,0.3);
-    transition: transform .2s, box-shadow .2s;
-  }
-  .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(255,46,77,0.45); }
-  .btn-ghost {
-    background: transparent;
-    box-shadow: none;
-    border: 1px solid var(--border);
-  }
-  .btn-ghost:hover { border-color: var(--accent); box-shadow: none; }
+    h1 {
+      font-size: 26px;
+      color: #ffffff;
+    }
 
-  /* Hero */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    justify-content: center; align-items: center;
-    text-align: center;
-    padding: 120px 8% 60px;
-  }
-  .badge {
-    padding: 8px 16px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    font-size: .85rem;
-    color: var(--muted);
-    margin-bottom: 26px;
-    background: var(--card);
-  }
-  .hero h1 {
-    font-size: clamp(3rem, 9vw, 6.5rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -2px;
-  }
-  .gradient-text {
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .hero p {
-    max-width: 620px;
-    margin: 24px auto 36px;
-    color: var(--muted);
-    font-size: 1.15rem;
-    line-height: 1.6;
-  }
-  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .repo-btn {
+      display: inline-block;
+      background-color: #238636;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background-color 0.2s;
+    }
 
-  .stats {
-    display: flex; gap: 60px; margin-top: 70px; flex-wrap: wrap; justify-content: center;
-  }
-  .stat h3 { font-size: 2rem; }
-  .stat p { color: var(--muted); font-size: .9rem; }
+    .repo-btn:hover {
+      background-color: #2ea043;
+    }
 
-  /* Секции */
-  section { padding: 100px 8%; }
-  .section-title { text-align: center; margin-bottom: 60px; }
-  .section-title h2 { font-size: 2.6rem; font-weight: 800; }
-  .section-title p { color: var(--muted); margin-top: 10px; }
+    .subtitle {
+      color: #8b949e;
+      margin-bottom: 24px;
+    }
 
-  /* Фичи */
-  .features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
-  }
-  .feature {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 32px;
-    transition: transform .3s, border-color .3s;
-  }
-  .feature:hover { transform: translateY(-6px); border-color: var(--accent); }
-  .feature .icon { font-size: 2.2rem; margin-bottom: 16px; }
-  .feature h3 { margin-bottom: 10px; font-size: 1.2rem; }
-  .feature p { color: var(--muted); line-height: 1.6; font-size: .95rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
 
-  /* Тарифы */
-  .pricing {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 28px;
-    max-width: 1100px;
-    margin: 0 auto;
-    align-items: stretch;
-  }
-  .plan {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    padding: 40px 34px;
-    position: relative;
-    display: flex; flex-direction: column;
-    transition: transform .3s;
-  }
-  .plan:hover { transform: translateY(-8px); }
-  .plan.popular {
-    border: 1px solid var(--accent);
-    background: linear-gradient(180deg, var(--card-2), var(--card));
-    box-shadow: 0 0 60px rgba(255,46,77,0.15);
-  }
-  .popular-tag {
-    position: absolute; top: -14px; left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    padding: 6px 16px; border-radius: 999px;
-    font-size: .8rem; font-weight: 700;
-    white-space: nowrap;
-  }
-  .plan h3 { font-size: 1.4rem; margin-bottom: 8px; }
-  .plan .desc { color: var(--muted); font-size: .95rem; margin-bottom: 24px; }
-  .price { font-size: 3.2rem; font-weight: 900; }
-  .price small { font-size: 1rem; color: var(--muted); font-weight: 500; }
-  .plan ul {
-    list-style: none;
-    margin: 28px 0 34px;
-    flex: 1;
-  }
-  .plan li {
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    color: #d6d6e0;
-    font-size: .95rem;
-  }
-  .plan li::before { content: "✓ "; color: var(--accent); font-weight: 700; }
-  .plan .btn { width: 100%; text-align: center; }
+    .card {
+      background-color: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-  /* FAQ */
-  .faq { max-width: 760px; margin: 0 auto; }
-  details {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px 24px;
-    margin-bottom: 14px;
-    cursor: pointer;
-  }
-  summary { font-weight: 600; font-size: 1.05rem; list-style: none; }
-  summary::-webkit-details-marker { display: none; }
-  summary::after { content: " +"; color: var(--accent); float: right; }
-  details[open] summary::after { content: " –"; }
-  details p { margin-top: 14px; color: var(--muted); line-height: 1.6; }
+    .card h2 {
+      font-size: 18px;
+      color: #58a6ff;
+      margin-bottom: 8px;
+    }
 
-  /* Модалка */
-  .modal {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(6px);
-    display: none;
-    align-items: center; justify-content: center;
-    z-index: 200;
-    padding: 20px;
-  }
-  .modal.show { display: flex; }
-  .modal-box {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 36px;
-    width: 100%; max-width: 420px;
-    position: relative;
-    animation: pop .3s ease;
-  }
-  @keyframes pop { from { transform: scale(.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-  .modal-box h3 { font-size: 1.5rem; margin-bottom: 6px; }
-  .modal-box > p { color: var(--muted); margin-bottom: 22px; font-size: .95rem; }
-  .close {
-    position: absolute; top: 14px; right: 18px;
-    background: none; border: none; color: var(--muted);
-    font-size: 1.6rem; cursor: pointer;
-  }
-  label { display: block; margin-bottom: 14px; font-size: .9rem; color: var(--muted); }
-  input, select {
-    width: 100%; margin-top: 8px;
-    padding: 14px 16px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text);
-    font-size: 1rem;
-    outline: none;
-  }
-  input:focus, select:focus { border-color: var(--accent); }
-  .modal .btn { width: 100%; margin-top: 8px; }
-  .selected-info {
-    background: var(--card-2);
-    border-radius: 12px;
-    padding: 14px 16px;
-    margin-bottom: 20px;
-    display: flex; justify-content: space-between;
-    font-weight: 600;
-  }
+    .card p {
+      font-size: 14px;
+      color: #c9d1d9;
+      margin-bottom: 16px;
+    }
 
-  /* Футер */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 40px 8%;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 20px;
-    color: var(--muted);
-    font-size: .9rem;
-  }
-  footer .socials { display: flex; gap: 20px; }
-  footer .socials a:hover { color: var(--text); }
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      background-color: #21262d;
+      color: #79c0ff;
+      padding: 3px 8px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
 
-  /* Адаптив */
-  @media (max-width: 760px) {
-    nav ul { display: none; }
-    .stats { gap: 30px; }
-    section { padding: 70px 6%; }
-  }
+    .card a {
+      color: #58a6ff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
 
-  /* Появление при скролле */
-  .reveal { opacity: 0; transform: translateY(30px); transition: all .7s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
-</style>
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 36px;
+      padding-top: 16px;
+      border-top: 1px solid #30363d;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #8b949e;
+    }
+
+    footer a {
+      color: #58a6ff;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
 
-<nav>
-  <div class="logo">Death<span>Visuals</span></div>
-  <ul>
-    <li><a href="#features">Возможности</a></li>
-    <li><a href="#pricing">Тарифы</a></li>
-    <li><a href="#faq">FAQ</a></li>
-  </ul>
-  <a href="#pricing" class="btn" style="padding:10px 20px;font-size:.9rem;">Купить</a>
-</nav>
+  <div class="container">
+    <header>
+      <h1>Бесплатные сайты и хостинги</h1>
+      <!-- ВСТАВЬТЕ ВАШУ ССЫЛКУ ВМЕСТО ТЕКСТА НИЖЕ -->
+      <a href="ВАША_ССЫЛКА_НА_РЕПОЗИТОРИЙ" class="repo-btn" target="_blank">Открыть репозиторий</a>
+    </header>
 
-<header class="hero">
-  <div class="badge">🔥 Новые визуалы каждую неделю</div>
-  <h1>Death<span class="gradient-text">Visuals</span></h1>
-  <p>Премиальный пак визуалов для Minecraft: анимации, эффекты, кастомный HUD и стиль, который заметят все на сервере.</p>
-  <div class="hero-buttons">
-    <a href="#pricing" class="btn">Выбрать тариф</a>
-    <a href="#features" class="btn btn-ghost">Что внутри</a>
-  </div>
-  <div class="stats">
-    <div class="stat"><h3>1000+</h3><p>довольных игроков</p></div>
-    <div class="stat"><h3>50+</h3><p>уникальных визуалов</p></div>
-    <div class="stat"><h3>24/7</h3><p>поддержка</p></div>
-  </div>
-</header>
+    <p class="subtitle">Подборка бесплатных сервисов, где можно разместить свой сайт и запустить собственный код.</p>
 
-<section id="features">
-  <div class="section-title reveal">
-    <h2>Почему <span class="gradient-text">DeathVisuals</span></h2>
-    <p>Всё, что нужно, чтобы выделяться в игре</p>
-  </div>
-  <div class="features">
-    <div class="feature reveal"><div class="icon">⚡</div><h3>Лёгкий для FPS</h3><p>Оптимизированные эффекты, которые не просаживают производительность даже на слабых ПК.</p></div>
-    <div class="feature reveal"><div class="icon">🎨</div><h3>Уникальный стиль</h3><p>Авторский дизайн каждого элемента. Таких визуалов нет у других игроков.</p></div>
-    <div class="feature reveal"><div class="icon">💀</div><h3>Анимации смерти</h3><p>Эффекты при убийстве и смерти, которые делают каждый бой запоминающимся.</p></div>
-    <div class="feature reveal"><div class="icon">🛠️</div><h3>Простая установка</h3><p>Подробная инструкция и поддержка. Установка занимает пару минут.</p></div>
-    <div class="feature reveal"><div class="icon">🔄</div><h3>Регулярные обновления</h3><p>Новые визуалы выходят регулярно, а купленные обновления входят в ваш тариф.</p></div>
-    <div class="feature reveal"><div class="icon">💬</div><h3>Поддержка 24/7</h3><p>Помогаем с установкой и вопросами в Telegram и Discord.</p></div>
-  </div>
-</section>
+    <div class="grid">
+      <div class="card">
+        <div>
+          <span class="tag">HTML / CSS / JS</span>
+          <h2>GitHub Pages</h2>
+          <p>Бесплатный хостинг статических сайтов прямо из репозитория. Поддерживает свой код и поддомен github.io.</p>
+        </div>
+        <a href="https://github.com" target="_blank">Перейти на сайт →</a>
+      </div>
 
-<section id="pricing">
-  <div class="section-title reveal">
-    <h2>Тарифы</h2>
-    <p>Выберите подходящий вариант доступа</p>
-  </div>
-  <div class="pricing">
-    <div class="plan reveal">
-      <h3>30 дней</h3>
-      <p class="desc">Попробовать и понять, подходит ли вам</p>
-      <div class="price">100 ₽ <small>/ 30 дней</small></div>
-      <ul>
-        <li>Все визуалы пака</li>
-        <li>Обновления в течение срока</li>
-        <li>Поддержка в Telegram</li>
-      </ul>
-      <button class="btn btn-ghost" onclick="openModal('30 дней', 100)">Купить</button>
+      <div class="card">
+        <div>
+          <span class="tag">Drag & Drop</span>
+          <h2>Netlify</h2>
+          <p>Позволяет загрузить папку с сайтом простым перетаскиванием в браузер или подключить GitHub.</p>
+        </div>
+        <a href="https://netlify.com" target="_blank">Перейти на сайт →</a>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="tag">Быстрый CDN</span>
+          <h2>Cloudflare Pages</h2>
+          <p>Бесплатный хостинг без ограничений на трафик для статических сайтов и фронтенд-проектов.</p>
+        </div>
+        <a href="https://cloudflare.com" target="_blank">Перейти на сайт →</a>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="tag">Python / Node.js</span>
+          <h2>Render</h2>
+          <p>Облачный хостинг с бесплатным тарифом для запуска серверного кода и бэкенда из GitHub.</p>
+        </div>
+        <a href="https://render.com" target="_blank">Перейти на сайт →</a>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="tag">Python</span>
+          <h2>PythonAnywhere</h2>
+          <p>Специализированный бесплатный хостинг для сайтов на Flask и Django без привязки карты.</p>
+        </div>
+        <a href="https://pythonanywhere.com" target="_blank">Перейти на сайт →</a>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="tag">Онлайн-тест</span>
+          <h2>CodePen</h2>
+          <p>Песочница в браузере для быстрой проверки и демонстрации HTML, CSS и JavaScript кода.</p>
+        </div>
+        <a href="https://codepen.io" target="_blank">Перейти на сайт →</a>
+      </div>
     </div>
 
-    <div class="plan popular reveal">
-      <div class="popular-tag">🔥 ХИТ ПРОДАЖ</div>
-      <h3>90 дней</h3>
-      <p class="desc">Оптимальный баланс цены и срока</p>
-      <div class="price">200 ₽ <small>/ 90 дней</small></div>
-      <ul>
-        <li>Все визуалы пака</li>
-        <li>Обновления в течение срока</li>
-        <li>Приоритетная поддержка</li>
-        <li>Экономия 33% от 30 дней</li>
-      </ul>
-      <button class="btn" onclick="openModal('90 дней', 200)">Купить</button>
-    </div>
-
-    <div class="plan reveal">
-      <h3>Навсегда</h3>
-      <p class="desc">Один раз и навсегда</p>
-      <div class="price">300 ₽ <small>/ навсегда</small></div>
-      <ul>
-        <li>Все визуалы пака</li>
-        <li>Все будущие обновления</li>
-        <li>Приоритетная поддержка</li>
-        <li>Лучшее предложение</li>
-      </ul>
-      <button class="btn btn-ghost" onclick="openModal('Навсегда', 300)">Купить</button>
-    </div>
+    <footer>
+      <a href="index.html">← На главную страницу</a>
+      <span>Бесплатный веб-каталог</span>
+    </footer>
   </div>
-</section>
-
-<section id="faq">
-  <div class="section-title reveal">
-    <h2>Частые вопросы</h2>
-  </div>
-  <div class="faq reveal">
-    <details>
-      <summary>Как получить визуалы после оплаты?</summary>
-      <p>После оплаты вы получите файлы и инструкцию в Telegram или на почту, которую укажете при заказе.</p>
-    </details>
-    <details>
-      <summary>Будут ли обновления?</summary>
-      <p>Да, новые визуалы и исправления выходят регулярно. Они доступны в рамках вашего тарифа.</p>
-    </details>
-    <details>
-      <summary>Работает ли на всех версиях Minecraft?</summary>
-      <p>Визуалы совместимы с актуальными версиями. Точный список указан в описании пака.</p>
-    </details>
-    <details>
-      <summary>Можно ли вернуть деньги?</summary>
-      <p>Цифровой товар возврату не подлежит, но если что-то не работает, мы поможем разобраться или заменим файлы.</p>
-    </details>
-  </div>
-</section>
-
-<footer>
-  <div class="logo">Death<span>Visuals</span></div>
-  <div class="socials">
-    <a href="#">Telegram</a>
-    <a href="#">Discord</a>
-    <a href="#">YouTube</a>
-  </div>
-  <div>© 2025 DeathVisuals. Все права защищены.</div>
-</footer>
-
-<!-- Модальное окно покупки -->
-<div class="modal" id="modal">
-  <div class="modal-box">
-    <button class="close" onclick="closeModal()">×</button>
-    <h3>Оформление заказа</h3>
-    <p>Заполните данные и перейдите к оплате</p>
-
-    <div class="selected-info">
-      <span id="planName">—</span>
-      <span id="planPrice">—</span>
-    </div>
-
-    <form id="orderForm" onsubmit="submitOrder(event)">
-      <label>Ник в Minecraft
-        <input type="text" id="nick" required placeholder="Ваш ник">
-      </label>
-      <label>Telegram или почта для связи
-        <input type="text" id="contact" required placeholder="@username или email">
-      </label>
-      <button type="submit" class="btn">Перейти к оплате</button>
-    </form>
-  </div>
-</div>
-
-<script>
-  // Модалка
-  const modal = document.getElementById('modal');
-  let currentPlan = null;
-
-  function openModal(name, price) {
-    currentPlan = { name, price };
-    document.getElementById('planName').textContent = 'Тариф: ' + name;
-    document.getElementById('planPrice').textContent = price + ' ₽';
-    modal.classList.add('show');
-  }
-
-  function closeModal() {
-    modal.classList.remove('show');
-  }
-
-  modal.addEventListener('click', e => {
-    if (e.target === modal) closeModal();
-  });
-
-  // Отправка заказа
-  // Замените на ссылку вашей платёжной системы или на обработчик заказа
-  function submitOrder(e) {
-    e.preventDefault();
-    const nick = document.getElementById('nick').value.trim();
-    const contact = document.getElementById('contact').value.trim();
-
-    const order = {
-      plan: currentPlan.name,
-      price: currentPlan.price,
-      nick,
-      contact
-    };
-    console.log('Заказ:', order);
-
-    // Пример: переход на страницу оплаты (ЮKassa, Robokassa, Boosty и т.п.)
-    // window.location.href = 'https://your-payment-link.com?amount=' + currentPlan.price;
-
-    alert('Заказ оформлен: ' + currentPlan.name + ' — ' + currentPlan.price + ' ₽\nНик: ' + nick);
-  }
-
-  // Анимация появления при скролле
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.15 });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
 
 </body>
 </html>
